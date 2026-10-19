@@ -19,7 +19,10 @@ target/
 *.iml
 *.ipr
 
-*.env
+# Environment variables
+.env
+.env.*
+!.env.example
 .Dockerfile
 ### NetBeans ###
 /nbproject/private/
