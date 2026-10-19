@@ -57,9 +57,7 @@ public class UrlMappingController {
 
     @GetMapping("/totalClicks")
     @PreAuthorize("hasRole('USER')")
-    public ResponseEntity<Map<LocalDate, Long>> getTotalClicksByDate(Principal principal,
-                                                                     @RequestParam("startDate") String startDate,
-                                                                     @RequestParam("endDate") String endDate){
+    public ResponseEntity<Map<LocalDate, Long>> getTotalClicksByDate(Principal principal, @RequestParam("startDate") String startDate, @RequestParam("endDate") String endDate){
         DateTimeFormatter formatter = DateTimeFormatter.ISO_LOCAL_DATE;
         SnipUser user = userService.findByUsername(principal.getName());
         LocalDate start = LocalDate.parse(startDate, formatter);
@@ -68,6 +66,17 @@ public class UrlMappingController {
         return ResponseEntity.ok(totalClicks);
     }
 
+
+    @DeleteMapping("/{shortUrl}")
+    @PreAuthorize("hasRole('USER')")
+    public ResponseEntity<Void> deleteShortUrl(@PathVariable String shortUrl, Principal principal) {
+
+        SnipUser user = userService.findByUsername(principal.getName());
+
+        urlMappingService.softDeleteUrl(shortUrl, user);
+
+        return ResponseEntity.noContent().build();
+    }
 
 
 }

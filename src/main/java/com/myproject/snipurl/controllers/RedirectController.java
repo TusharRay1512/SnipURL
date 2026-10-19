@@ -1,6 +1,4 @@
 package com.myproject.snipurl.controllers;
-
-
 import com.myproject.snipurl.models.UrlMapping;
 import com.myproject.snipurl.services.UrlMappingService;
 import lombok.AllArgsConstructor;

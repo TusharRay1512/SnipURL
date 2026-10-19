@@ -15,8 +15,10 @@ public class UrlMapping {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "actual_url", columnDefinition = "TEXT")
     private String actualUrl;
 
+    @Column(name = "snip_url", length = 255)
     private String snipUrl;
 
     private int clickCount = 0;
